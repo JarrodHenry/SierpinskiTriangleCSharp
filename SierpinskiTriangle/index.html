@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1024" height="768"></canvas>
+    <script>
+
+  function drawTriangle(point1, point2, point3, color, level) {
+    var canvas = document.getElementById('myCanvas');
+    if (canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+
+
+      if (level==0)
+      {
+        ctx.beginPath();
+        ctx.moveTo(point1.x, point1.y);
+        ctx.lineTo(point2.x, point2.y);
+        ctx.lineTo(point3.x, point3.y);
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+      else {
+        // Draw three smaller triangles
+        let left_mid = {x: ((point1.x + point3.x) / 2),
+                      y: ((point1.y + point3.y) /2)};
+        let right_mid ={x: ((point1.x + point2.x) / 2),
+                      y: ((point1.y + point2.y) /2)};
+        let bottom_mid = {x: ((point2.x + point3.x) / 2),
+                      y: ((point2.y + point3.y) /2)};
+
+        drawTriangle(point1, left_mid, right_mid, "red", level-1);
+        drawTriangle(left_mid, point3, bottom_mid, "red", level-1);
+        drawTriangle(right_mid, bottom_mid, point2, "red", level-1);
+      }
+    }
+  }
+
+  drawTriangle({x:512, y:0},{x:1024,y:768},{x:0, y:768},"red", 5);
+//  drawTriangle({x:111, y:111},{x:1024,y:768},{x:512, y:0},"red", 4);
+    </script>
+  </body>
+</html>

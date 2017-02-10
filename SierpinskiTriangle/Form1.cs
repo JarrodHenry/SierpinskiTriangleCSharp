@@ -23,9 +23,9 @@ namespace SierpinskiTriangle
             gr.Clear(Color.White);
             var level = Convert.ToInt32(numericUpDown1.Value);
             // 747 x 557
-            var topPoint = new PointF(350, 0);
+            var topPoint = new PointF(373, 0);
             var leftPoint = new PointF(0, 500);
-            var rightPoint = new PointF(700, 500);
+            var rightPoint = new PointF(747, 500);
             DrawTriangle(gr, level, topPoint, leftPoint, rightPoint);
 
         }
